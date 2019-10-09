@@ -23,12 +23,11 @@
   	<div class="result-count">
   		<!-- greater than comparison -->
 	  {{ if (gt .Results.TotalResults 0)}}
-	  <p>About <strong>{{ .Results.TotalResults }}</strong> results were found.</p>
-	  <!-- not equal / equal comparison -->
+	    <p>About <strong>{{ .Results.TotalResults }}</strong> results were found. You are on page <strong>{{ .CurrentPage }}</strong> of <strong> {{ .TotalPages }}</strong>.</p>
 	  {{ else if (ne .SearchKey "") and (eq .Results.TotalResults 0) }}
-	  <p>No results found for your query: <strong>{{ .SearchKey }}</strong>.</p>
+	    <p>No results found for your query: <strong>{{ .SearchKey }}</strong>.</p>
 	  {{ end }}
-	</div>
+		</div>
   <ul class="search-results">
   	<!-- to access a struct field in a template, use the dot operator -->
   	<!-- below refers to search object, passed in -->
@@ -50,6 +49,15 @@
       </li>
     {{ end }}
   </ul>
+  <div class="pagination">
+  	{{ if (gt .NextPage 2) }}
+		<a href="/search?q={{ .SearchKey}}&page={{ .PreviousPage }}" class="button previous-page">Previous</a>
+	{{ end }}
+  	<!-- if last page has not been reached, the next button will be rendered on the bottom of the page -->
+  	{{ if (ne .IsLastPage true) }}
+  		<a href="/search?q={{ .SearchKey }}&page={{ .NextPage }}" class="button next-page">Next</a>
+  	{{ end }}
+  </div>
 </section>
 </main>
 </body>

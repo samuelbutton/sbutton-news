@@ -70,6 +70,22 @@ type Search struct {
 	Results    Results
 }
 
+// to determine if the last page of results has been reached
+func (s *Search) IsLastPage() bool {
+	return s.NextPage >= s.TotalPages
+}
+
+func (s *Search) CurrentPage() int {
+	if s.NextPage == 1 {
+		return s.NextPage
+	}
+	return s.NextPage - 1
+}
+
+func (s *Search) PreviousPage()	 int {
+	return s.CurrentPage() - 1 
+}
+
 // handler function, always of the signature "func(w http.ResponseWriter, r *http.Request)"
 // w parameter is the structure we use to send responses to an HTTP request
 // it implements a Write() method which accpets a slice of bytes and the writes the data to the connection as part of an HTTP response
@@ -188,6 +204,10 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 
 	search.TotalPages = int(math.Ceil(float64(search.Results.TotalResults / pageSize)))
 	
+	if ok := !search.IsLastPage(); ok {
+		search.NextPage++
+	}
+
 	// we pass the search variable, instance, as the data interface
 	// allows us to access data from the JSON object in our template
 	err = tpl.Execute(w, search)
