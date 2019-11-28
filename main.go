@@ -35,7 +35,7 @@ type Article struct {
 }
 
 type Results struct {
-	Category     string    `json:"category"`// added
+	Category     string    `json:"category"`
 	Status       string    `json:"status"`
 	TotalResults int       `json:"totalResults"`
 	Articles     []Article `json:"articles"`
@@ -179,8 +179,9 @@ func main() {
   	if err != nil {
 		log.Fatal("problem with template parsing")
   	}
-
-	apiKey = flag.String("apikey", "8fde6f781fa644229d0f7cafca98f62a", "Newsapi.org access key")
+  	
+  	apiString := os.Getenv("NEWS_API_KEY")
+	apiKey = flag.String("apikey", apiString, "Newsapi.org access key")
 	flag.Parse()
 
 	if *apiKey == "" {
