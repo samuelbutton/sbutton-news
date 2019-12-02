@@ -1,4 +1,5 @@
 package main
+
 import (
 	"net/http"
 	"os"
@@ -15,13 +16,10 @@ import (
 	"sync"
 )
 
+import . "github.com/scbutton95/news-app/pkg/model"
+
 var apiKey *string
 var t *template.Template
-
-type Source struct {
-	ID   interface{} `json:"id"`
-	Name string      `json:"name"`
-}
 
 type Article struct {
 	Source      Source    `json:"source"`
