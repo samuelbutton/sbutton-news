@@ -6,7 +6,6 @@ import (
 	"html/template"
 	"net/url"
 	"fmt"
-	"time"
 	"flag"
 	"encoding/json"
 	"log"
@@ -16,35 +15,8 @@ import (
 	"sync"
 )
 
-import . "github.com/scbutton95/news-app/pkg/model"
-
 var apiKey *string
 var t *template.Template
-
-type Article struct {
-	Source      Source    `json:"source"`
-	Author      string    `json:"author"`
-	Title       string    `json:"title"`
-	Description string    `json:"description"`
-	URL         string    `json:"url"`
-	URLToImage  string    `json:"urlToImage"`
-	PublishedAt time.Time `json:"publishedAt"`
-	Content     string    `json:"content"`
-}
-
-type Results struct {
-	Category     string    `json:"category"`
-	Status       string    `json:"status"`
-	TotalResults int       `json:"totalResults"`
-	Articles     []Article `json:"articles"`
-}
-
-type Search struct {
-	SearchKey  string
-	NextPage   int
-	TotalPages int
-	Results    Results
-}
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	digest := make(map[string]Results)
