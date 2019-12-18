@@ -1,1 +1,1 @@
-web: bin/news-app -apikey $NEWS_API_KEY
+web: ./cmd/cmd -apikey $NEWS_API_KEY
