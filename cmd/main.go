@@ -6,7 +6,6 @@ import (
 	"html/template"
 	"flag"
 	"log"
-	"fmt"
 )
 
 var apiKey *string
@@ -18,13 +17,11 @@ func main() {
 	if err != nil {
 		log.Println(err)
 	}
-	fmt.Println(path)
 
   	t, err = template.ParseGlob(path + "/cmd/templates/*")
   	if err != nil {
 		log.Fatal("problem with template parsing")
-	  }
-	fmt.Println(path + "/cmd/templates/*") 
+	}
   	
   	apiString := os.Getenv("NEWS_API_KEY")
 	apiKey = flag.String("apikey", apiString, "Newsapi.org access key")

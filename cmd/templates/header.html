@@ -12,7 +12,7 @@
   <header>
     <a class="logo" href="/">News App</a>
     <form action="/search" method="GET">
-      <input autofocus class="search-input" value=""
+      <input autofocus class="search-input" value="{{ .SearchKey }}"
       placeholder="Search a news topic" type="search" name="q">
     </form>
     <a href="https://github.com/scbutton95/news-app-go" class="button
