@@ -12,7 +12,6 @@ var apiKey *string
 var t *template.Template
 
 func main() {
-<<<<<<< HEAD
 
 	path, err := os.Getwd()
 	if err != nil {
@@ -20,10 +19,6 @@ func main() {
 	}
 
   	t, err = template.ParseGlob(path + "/cmd/templates/*")
-=======
-	var err error
-  	t, err = template.ParseGlob("./templates/*")
->>>>>>> 5aa0bc4724a23a279c0336efdcfdae4dba61ecce
   	if err != nil {
 		log.Fatal("problem with template parsing")
 	}
