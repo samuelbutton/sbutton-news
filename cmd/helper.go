@@ -1,11 +1,9 @@
-
 package main
 
 import (
-	"net/http"
-	"fmt"
 	"encoding/json"
-
+	"fmt"
+	"net/http"
 )
 
 func (results *Results) hitAPI(w http.ResponseWriter, endpoint string) (http.ResponseWriter, bool) {
@@ -46,6 +44,6 @@ func (s *Search) CurrentPage() int {
 	return s.NextPage - 1
 }
 
-func (s *Search) PreviousPage()	 int {
-	return s.CurrentPage() - 1 
+func (s *Search) PreviousPage() int {
+	return s.CurrentPage() - 1
 }
